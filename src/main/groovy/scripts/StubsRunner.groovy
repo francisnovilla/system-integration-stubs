@@ -1,5 +1,6 @@
-package org.ancillaryarm.stubs
+package scripts
 
+import org.ancillaryarm.stubs.StubsMain
 import org.apache.camel.spring.Main
 
 

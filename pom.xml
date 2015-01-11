@@ -28,9 +28,18 @@
       <version>${camel.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-cxf</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http-jetty</artifactId>
+      <version>3.0.2</version> <!-- sync this with Camel -->
+    </dependency>
+    <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
-      <!-- any version of Groovy \>= 1.8.2 should work here -->
       <version>2.3.7</version>
     </dependency>
   </dependencies>
@@ -45,6 +54,15 @@
 
   <!-- Build Settings -->
   <build>
+
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/main/groovy</directory>
+      </resource>
+    </resources>
 
     <pluginManagement>
       <plugins>
@@ -124,40 +142,40 @@
       <id>start</id>
       <build>
         <plugins>
-      <plugin>
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <version>1.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <properties>
-            <!--<property>-->
-              <!--<name>someProp</name>-->
-              <!--<value>${someProp}</value>-->
-            <!--</property>-->
-          </properties>
-          <scripts>
-            <script>file://${project.basedir}/src/main/groovy/org/ancillaryarm/stubs/StubsRunner.groovy</script>
-          </scripts>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <!-- any version of Groovy \>= 1.5.0 should work here -->
-            <version>2.3.7</version>
-            <scope>runtime</scope>
-          </dependency>
-        </dependencies>
-      </plugin>
-    </plugins>
-  </build>
+          <plugin>
+            <groupId>org.codehaus.gmavenplus</groupId>
+            <artifactId>gmavenplus-plugin</artifactId>
+            <version>1.2</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <properties>
+                <!--<property>-->
+                <!--<name>someProp</name>-->
+                <!--<value>${someProp}</value>-->
+                <!--</property>-->
+              </properties>
+              <scripts>
+                <script>file://${project.basedir}/src/main/groovy/scripts/StubsRunner.groovy</script>
+              </scripts>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <!-- any version of Groovy \>= 1.5.0 should work here -->
+                <version>2.3.7</version>
+                <scope>runtime</scope>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
 
     </profile>
   </profiles>

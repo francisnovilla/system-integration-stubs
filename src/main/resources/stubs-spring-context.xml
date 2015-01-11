@@ -10,7 +10,7 @@
 
   <context:annotation-config/>
 
-  <context:component-scan base-package="org.ancillaryarm.stubs.route"/>
+  <context:component-scan base-package="org.ancillaryarm.stubs"/>
 
 
   <camel:camelContext xmlns="http://camel.apache.org/schema/spring">
