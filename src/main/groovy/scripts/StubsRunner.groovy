@@ -1,8 +1,6 @@
 package scripts
 
-import org.ancillaryarm.stubs.StubsMain
-import org.apache.camel.spring.Main
-
+import org.ancillaryarm.stubsmgmt.StubsMain
 
 print "!"
 

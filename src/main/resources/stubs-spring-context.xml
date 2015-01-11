@@ -11,11 +11,14 @@
   <context:annotation-config/>
 
   <context:component-scan base-package="org.ancillaryarm.stubs"/>
+  <context:component-scan base-package="org.ancillaryarm.stubsmgmt"/>
 
 
   <camel:camelContext xmlns="http://camel.apache.org/schema/spring">
     <!-- and then let Camel use those @Component scanned route builders -->
     <camel:contextScan/>
+
+    <camel:restConfiguration bindingMode="auto" component="restlet" port="8080"/>
   </camel:camelContext>
 
 </beans>
