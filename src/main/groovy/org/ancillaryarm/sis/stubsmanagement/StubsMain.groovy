@@ -1,4 +1,4 @@
-package org.ancillaryarm.stubsmgmt
+package org.ancillaryarm.sis.stubsmanagement
 
 import org.apache.camel.spring.Main
 

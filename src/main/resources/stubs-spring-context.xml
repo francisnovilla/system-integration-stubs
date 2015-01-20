@@ -10,8 +10,9 @@
 
   <context:annotation-config/>
 
-  <context:component-scan base-package="org.ancillaryarm.stubs"/>
-  <context:component-scan base-package="org.ancillaryarm.stubsmgmt"/>
+  <context:component-scan base-package="stubs"/>
+  <context:component-scan base-package="org.ancillaryarm.sis.stubsmanagement"/>
+  <context:component-scan base-package="org.ancillaryarm.sis.exchangesreceived"/>
 
 
   <camel:camelContext xmlns="http://camel.apache.org/schema/spring">

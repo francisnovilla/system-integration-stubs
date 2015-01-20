@@ -1,6 +1,6 @@
 package scripts
 
-import org.ancillaryarm.stubsmgmt.StubsMain
+import org.ancillaryarm.sis.stubsmanagement.StubsMain
 
 print "!"
 

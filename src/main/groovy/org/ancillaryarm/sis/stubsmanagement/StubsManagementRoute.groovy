@@ -1,8 +1,6 @@
-package org.ancillaryarm.stubsmgmt
+package org.ancillaryarm.sis.stubsmanagement
 
-import org.apache.camel.Body
 import org.apache.camel.Exchange
-import org.apache.camel.Handler
 import org.apache.camel.Processor
 import org.apache.camel.builder.RouteBuilder
 import org.slf4j.Logger
@@ -25,16 +23,16 @@ class StubsManagementRoute extends RouteBuilder {
   @Override
   void configure() throws Exception {
 
-    rest("/stubsmgmt")
+    rest("/stubsmanagement")
         .get("/{stub}")
-        .to("direct:stubsmgmt-get")
+        .to("direct:stubsmanagement-get")
         .post("/{stub}")
-        .to("direct:stubsmgmt-set")
+        .to("direct:stubsmanagement-set")
         .delete("/{stub}")
-        .to("direct:stubsmgmt-reset")
+        .to("direct:stubsmanagement-reset")
 
 
-    from("direct:stubsmgmt-get")
+    from("direct:stubsmanagement-get")
         .process(new Processor() {
       @Override
       void process(Exchange exchange) throws Exception {
@@ -44,7 +42,7 @@ class StubsManagementRoute extends RouteBuilder {
       }
     })
 
-    from("direct:stubsmgmt-set")
+    from("direct:stubsmanagement-set")
         .process(new Processor() {
       @Override
       void process(Exchange exchange) throws Exception {
@@ -54,7 +52,7 @@ class StubsManagementRoute extends RouteBuilder {
       }
     })
 
-    from("direct:stubsmgmt-reset")
+    from("direct:stubsmanagement-reset")
         .process(new Processor() {
       @Override
       void process(Exchange exchange) throws Exception {

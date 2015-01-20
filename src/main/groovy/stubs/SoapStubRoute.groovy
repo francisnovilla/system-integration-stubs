@@ -1,29 +1,23 @@
-package org.ancillaryarm.stubs
+package stubs
 
-import org.ancillaryarm.stubsmgmt.StubsRouteBuilder
-import org.apache.camel.Body
+import org.ancillaryarm.sis.stubsmanagement.StubsRouteBuilder
 import org.apache.camel.Exchange
-import org.apache.camel.Handler
 import org.apache.camel.Processor
-import org.apache.camel.builder.RouteBuilder
 import org.springframework.stereotype.Component
 
 /**
  * Created by francis on 3/01/15.
  */
 @Component
-class RestGetStubRoute extends StubsRouteBuilder {
-
+class SoapStubRoute extends StubsRouteBuilder {
 
   @Override
   void configure() throws Exception {
 
-    rest("/stubs")
-        .get("/restget")
-        .to("direct:get")
+    from("cxf:http://localhost:8081/stubs/StockQuoteService?wsdlURL=StockQuote.wsdl&dataFormat=PAYLOAD")
+        .process(defaultExchangeSaver)
+        .process(new ScriptProcessor())
 
-    from("direct:get")
-      .process(new ScriptProcessor())
 
   }
 
