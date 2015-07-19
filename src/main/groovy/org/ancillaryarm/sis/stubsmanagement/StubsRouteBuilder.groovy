@@ -32,9 +32,12 @@ abstract class StubsRouteBuilder extends RouteBuilder {
 
   @PostConstruct
   def init() {
+    println scriptName
     def script = this.class.getResource(scriptName + '.groovy').text
-    scriptCache.setDefaultScript(scriptName, script)
-    scriptCache.setScript(scriptName, script)
+    if (script) {
+      scriptCache.setDefaultScript(scriptName, script)
+      scriptCache.setScript(scriptName, script)
+    }
   }
 
   String getScript() {
