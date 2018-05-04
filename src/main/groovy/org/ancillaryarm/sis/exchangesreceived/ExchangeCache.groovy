@@ -11,11 +11,11 @@ class ExchangeCache {
 
   Map cache = [:]
 
-  def getExchange(scriptName) {
+  def getExchange(String scriptName) {
     cache[scriptName]
   }
 
-  def setExchange(scriptName, exchange) {
+  def setExchange(String scriptName, Exchange exchange) {
     cache[scriptName] = exchange
   }
 

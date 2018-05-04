@@ -1,6 +1,6 @@
 <!-- all type declarations are in a chunk of xsd -->
-<xsd:schema targetNamespace="http://example.com/stockquote.xsd"
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://example.com/stockquote.xsd">
 
 
   <!-- xsd definition: TradePriceRequest [... tickerSymbol string ...] -->

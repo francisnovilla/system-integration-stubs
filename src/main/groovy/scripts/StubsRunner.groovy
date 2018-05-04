@@ -20,5 +20,5 @@ main.enableHangupSupport();
 
 // run until you terminate the JVM
 System.out.println("Starting Camel. Use ctrl + c to terminate the JVM.\n");
-String[] args = ["-ac","stubs-spring-context.xml"]
+String[] args = ["-ac", "stubs-spring-context.xml"]
 main.run(args)

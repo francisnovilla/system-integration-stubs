@@ -3,7 +3,6 @@ package org.ancillaryarm.sis.exchangesreceived
 import org.apache.camel.Exchange
 import org.apache.camel.Processor
 import org.apache.camel.builder.RouteBuilder
-import org.apache.camel.model.dataformat.JsonLibrary
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,7 +18,6 @@ class ExchangesReceivedRoute extends RouteBuilder {
 
   @Autowired
   ExchangeCache exchangeCache
-
 
   @Override
   void configure() throws Exception {

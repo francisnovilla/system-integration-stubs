@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component
  * Created by francis on 19/07/15.
  */
 @Component
-public class HsmFrameDecoder extends  LengthFieldBasedFrameDecoder implements ChannelHandlerFactory{
+public class HsmFrameDecoder extends LengthFieldBasedFrameDecoder implements ChannelHandlerFactory {
 
-    HsmFrameDecoder() {
-        super(1024, 0, 4);
-    }
+  HsmFrameDecoder() {
+    super(1024, 0, 4);
+  }
 
-    @Override
-    ChannelHandler newChannelHandler() {
-        return new HsmFrameDecoder()
-    }
+  @Override
+  ChannelHandler newChannelHandler() {
+    return new HsmFrameDecoder()
+  }
 }

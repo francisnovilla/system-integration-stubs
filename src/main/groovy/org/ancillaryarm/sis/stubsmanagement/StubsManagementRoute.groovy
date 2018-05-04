@@ -1,7 +1,6 @@
 package org.ancillaryarm.sis.stubsmanagement
 
 import org.apache.camel.Exchange
-import org.apache.camel.Processor
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.model.rest.RestBindingMode
 import org.slf4j.Logger
@@ -35,24 +34,24 @@ class StubsManagementRoute extends RouteBuilder {
     from("direct:stubsmanagement-get")
         .setHeader(Exchange.CONTENT_TYPE, simple("text/plain"))
         .process { exchange ->
-          String scriptName = exchange.getIn().getHeader('stub')
-          String script = scriptCache.getScript(scriptName)
-          exchange.getIn().setBody(script, String.class)
-        }
+      String scriptName = exchange.getIn().getHeader('stub')
+      String script = scriptCache.getScript(scriptName)
+      exchange.getIn().setBody(script, String.class)
+    }
 
     from("direct:stubsmanagement-set")
         .setHeader(Exchange.CONTENT_TYPE, simple("text/plain"))
         .process { exchange ->
-          String scriptName = exchange.getIn().getHeader('stub')
-          String script = exchange.getIn().getBody(String.class)
-          scriptCache.setScript(scriptName, script)
-        }
+      String scriptName = exchange.getIn().getHeader('stub')
+      String script = exchange.getIn().getBody(String.class)
+      scriptCache.setScript(scriptName, script)
+    }
 
     from("direct:stubsmanagement-reset")
         .process { exchange ->
-          String scriptName = exchange.getIn().getHeader('stub')
-          scriptCache.resetScript(scriptName)
-        }
+      String scriptName = exchange.getIn().getHeader('stub')
+      scriptCache.resetScript(scriptName)
+    }
   }
 
 }

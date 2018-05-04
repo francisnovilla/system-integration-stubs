@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 
 <!-- root element wsdl:definitions defines set of related services -->
-<wsdl:definitions name="StockQuote"
-             targetNamespace="http://example.com/stockquote.wsdl"
-             xmlns:tns="http://example.com/stockquote.wsdl"
-             xmlns:xsd1="http://example.com/stockquote.xsd"
-             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:tns="http://example.com/stockquote.wsdl"
+                  xmlns:xsd1="http://example.com/stockquote.xsd"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  name="StockQuote"
+                  targetNamespace="http://example.com/stockquote.wsdl">
 
   <!-- wsdl:types encapsulates schema definitions of communication types; here using xsd -->
   <wsdl:types>
 
     <schema xmlns="http://www.w3.org/2001/XMLSchema">
-      <import namespace="http://example.com/stockquote.xsd" schemaLocation="StockQuote.xsd" />
+      <import namespace="http://example.com/stockquote.xsd" schemaLocation="StockQuote.xsd"/>
     </schema>
   </wsdl:types>
 

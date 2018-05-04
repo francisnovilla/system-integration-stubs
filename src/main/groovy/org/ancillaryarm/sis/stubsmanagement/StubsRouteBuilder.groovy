@@ -1,7 +1,6 @@
 package org.ancillaryarm.sis.stubsmanagement
 
 import com.google.common.base.Function
-import com.google.common.base.Predicate
 import com.google.common.collect.Maps
 import org.ancillaryarm.sis.exchangesreceived.ExchangeCache
 import org.ancillaryarm.sis.exchangesreceived.StubExchange
@@ -17,8 +16,8 @@ import javax.annotation.PostConstruct
  */
 abstract class StubsRouteBuilder extends RouteBuilder {
 
-   @Autowired
-   ScriptCache scriptCache
+  @Autowired
+  ScriptCache scriptCache
 
   @Autowired
   ExchangeCache exchangeCache
@@ -55,7 +54,7 @@ abstract class StubsRouteBuilder extends RouteBuilder {
               return o as String
             }
           }),
-          headers:  Maps.transformValues(exchange.getIn().getHeaders(), new Function() {
+          headers: Maps.transformValues(exchange.getIn().getHeaders(), new Function() {
             @Override
             Object apply(Object o) {
               return o as String

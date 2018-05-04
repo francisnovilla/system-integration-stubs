@@ -19,8 +19,8 @@ class RestGetStubRoute extends StubsRouteBuilder {
         .to("direct:get")
 
     from("direct:get")
-      .process(defaultExchangeSaver)
-      .process(new ScriptProcessor())
+        .process(defaultExchangeSaver)
+        .process(new ScriptProcessor())
 
   }
 

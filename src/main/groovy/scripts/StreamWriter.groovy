@@ -11,24 +11,24 @@ import javax.xml.bind.DatatypeConverter
 def s = new Socket("localhost", 32300);
 
 s.withStreams { inStream, outStream ->
-    outStream << DatatypeConverter.parseHexBinary('00000011') //17 bytes follow
-    outStream << "Hello test server"  // send request first
-    outStream << DatatypeConverter.parseHexBinary('00000011')
-    outStream << "Hello test server"  // send request first
-    sleep(1000)
+  outStream << DatatypeConverter.parseHexBinary('00000011') //17 bytes follow
+  outStream << "Hello test server"  // send request first
+  outStream << DatatypeConverter.parseHexBinary('00000011')
+  outStream << "Hello test server"  // send request first
+  sleep(1000)
 
-    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+  ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
-    byte[] data = new byte[4096];
-    while (inStream.available() > 0) {
-        int c = inStream.read(data, 0, data.length)
-        buffer.write(data, 0, c);
-    }
+  byte[] data = new byte[4096];
+  while (inStream.available() > 0) {
+    int c = inStream.read(data, 0, data.length)
+    buffer.write(data, 0, c);
+  }
 
-    byte[] bytes = buffer.toByteArray()
+  byte[] bytes = buffer.toByteArray()
 
-    println DatatypeConverter.printHexBinary(bytes)
-    println new String(bytes, Charsets.ISO_8859_1)
+  println DatatypeConverter.printHexBinary(bytes)
+  println new String(bytes, Charsets.ISO_8859_1)
 
 }
 s.close();
