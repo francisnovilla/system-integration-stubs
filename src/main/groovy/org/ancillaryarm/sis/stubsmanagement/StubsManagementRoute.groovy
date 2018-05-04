@@ -3,6 +3,7 @@ package org.ancillaryarm.sis.stubsmanagement
 import org.apache.camel.Exchange
 import org.apache.camel.Processor
 import org.apache.camel.builder.RouteBuilder
+import org.apache.camel.model.rest.RestBindingMode
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,50 +20,39 @@ class StubsManagementRoute extends RouteBuilder {
   @Autowired
   ScriptCache scriptCache
 
-
   @Override
   void configure() throws Exception {
 
     rest("/stubsmanagement")
         .get("/{stub}")
         .to("direct:stubsmanagement-get")
-        .post("/{stub}")
+        .post("/{stub}").bindingMode(RestBindingMode.off)
         .to("direct:stubsmanagement-set")
         .delete("/{stub}")
         .to("direct:stubsmanagement-reset")
 
 
     from("direct:stubsmanagement-get")
-        .process(new Processor() {
-      @Override
-      void process(Exchange exchange) throws Exception {
-        String scriptName = exchange.getIn().getHeader('stub')
-        String script = scriptCache.getScript(scriptName)
-        exchange.getIn().setBody(script, String.class)
-      }
-    })
+        .setHeader(Exchange.CONTENT_TYPE, simple("text/plain"))
+        .process { exchange ->
+          String scriptName = exchange.getIn().getHeader('stub')
+          String script = scriptCache.getScript(scriptName)
+          exchange.getIn().setBody(script, String.class)
+        }
 
     from("direct:stubsmanagement-set")
-        .process(new Processor() {
-      @Override
-      void process(Exchange exchange) throws Exception {
-        String scriptName = exchange.getIn().getHeader('stub')
-        String script = exchange.getIn().getBody(String.class)
-        scriptCache.setScript(scriptName, script)
-      }
-    })
+        .setHeader(Exchange.CONTENT_TYPE, simple("text/plain"))
+        .process { exchange ->
+          String scriptName = exchange.getIn().getHeader('stub')
+          String script = exchange.getIn().getBody(String.class)
+          scriptCache.setScript(scriptName, script)
+        }
 
     from("direct:stubsmanagement-reset")
-        .process(new Processor() {
-      @Override
-      void process(Exchange exchange) throws Exception {
-        String scriptName = exchange.getIn().getHeader('stub')
-        scriptCache.resetScript(scriptName)
-      }
-    })
-
-
+        .process { exchange ->
+          String scriptName = exchange.getIn().getHeader('stub')
+          scriptCache.resetScript(scriptName)
+        }
   }
-
 
 }

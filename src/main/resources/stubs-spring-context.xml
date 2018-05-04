@@ -14,10 +14,10 @@
   <context:component-scan base-package="org.ancillaryarm.sis.stubsmanagement"/>
   <context:component-scan base-package="org.ancillaryarm.sis.exchangesreceived"/>
 
-
   <camel:camelContext xmlns="http://camel.apache.org/schema/spring">
     <!-- and then let Camel use those @Component scanned route builders -->
     <camel:contextScan/>
+    <jmxAgent id="agent" disabled="true"/>
 
     <camel:restConfiguration bindingMode="auto" component="restlet" port="8080"/>
   </camel:camelContext>

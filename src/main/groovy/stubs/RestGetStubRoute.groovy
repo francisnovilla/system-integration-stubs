@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component
 @Component
 class RestGetStubRoute extends StubsRouteBuilder {
 
-
   @Override
   void configure() throws Exception {
 
@@ -29,13 +28,14 @@ class RestGetStubRoute extends StubsRouteBuilder {
 
     @Override
     void process(Exchange exchange) throws Exception {
-      Binding binding = new Binding();
-      binding.setVariable("in.body", exchange.getIn().getBody());
-      GroovyShell shell = new GroovyShell(binding);
+      Binding binding = new Binding()
+      binding.setVariable("in.body", exchange.getIn().getBody())
+      GroovyShell shell = new GroovyShell(binding)
 
       Object value = shell.evaluate(getScript())
-      Object responseCode = binding.getVariable("CamelHttpResponseCode")
-      responseCode != null ? exchange.getOut().setHeader("CamelHttpResponseCode", responseCode) : null
+      def vars = binding.variables
+      vars.ResponseCode ? exchange.out.headers['CamelHttpResponseCode'] = vars.ResponseCode : null
+      vars.ContentType ? exchange.out.headers[Exchange.CONTENT_TYPE] = vars.ContentType : null
 
       exchange.getOut().setBody(value)
 

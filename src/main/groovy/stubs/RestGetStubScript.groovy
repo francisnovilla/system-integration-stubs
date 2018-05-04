@@ -5,6 +5,8 @@
 
 sleep 1000
 
-CamelHttpResponseCode = 404
+ResponseCode = 404
+ContentType = 'application/json'
+
 
 'script return will be Camel out body by convention'
